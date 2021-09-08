@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'images/To-do Mate.ico' %}" type="images/gif" sizes="16x16">
+
+    {% block title %}
+    {% endblock title %}
+    
+    <nav class="navbar navbar-expand-lg navbar-dark" style = "background-color: #5321CB ">
+        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'images/TickTo-Do Mate_1.png' %}" alt="To-Do Mate"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link" href="{% url 'index' %}">Home</a>
+            <a class="nav-item nav-link" href="{% url 'todolist' %}">Todo List</a>
+            <a class="nav-item nav-link" href="{% url 'contact' %}">Contact Us</a>
+            <a class="nav-item nav-link" href="{% url 'about' %}">About Us</a>
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+          <div class="form-inline my-2 my-lg-0">
+          <div class="p-2 text-white">  Welcome, {{ user.username }}</div> 
+              <a href="{% url 'logout' %}">
+              <button class="btn btn-info my-2 my-sm-0" type="submit">Logout</button>
+            </a>
+          </div>
+        {% else %}
+          <a href="{% url 'login' %}">
+              <button class="btn btn-success mr-3 my-2 my-sm-0" type="submit">Login</button>
+          </a>
+          <a href="{% url 'register' %}">
+              <button class="btn btn-primary my-2 my-sm-0" type="submit">Register</button>
+          </a>
+        {% endif %}
+    </nav>
+  </head>
+  <body class="bg-light">
+    {% block content %}
+    {% endblock content %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
